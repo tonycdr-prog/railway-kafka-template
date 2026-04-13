@@ -1,0 +1,30 @@
+{
+  "name": "railway-kafka-template",
+  "version": "1.0.0",
+  "description": "Production-ready Apache Kafka template for Railway with Node.js producer/consumer",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
+    "test": "node --test src/app.test.js"
+  },
+  "keywords": [
+    "kafka",
+    "railway",
+    "streaming",
+    "events",
+    "nodejs"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "kafkajs": "^2.2.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
