@@ -1,6 +1,7 @@
 'use strict';
 
 const { Kafka, Partitioners, CompressionTypes } = require('kafkajs');
+const crypto = require('crypto');
 
 const TOPIC = 'events';
 
@@ -77,14 +78,15 @@ class KafkaProducer {
   }
 
   generateExampleEvents() {
-    const userId = `user_${Math.floor(Math.random() * 10000)}`;
+    const rand = (max) => Math.floor(crypto.getRandomValues(new Uint32Array(1))[0] / 0x100000000 * max);
+    const userId = `user_${rand(10000)}`;
     return [
       {
         key: userId,
         value: {
           type: 'login',
           userId,
-          ip: `192.168.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}`,
+          ip: `192.168.${rand(255)}.${rand(255)}`,
           userAgent: 'Mozilla/5.0',
         },
       },
@@ -93,8 +95,8 @@ class KafkaProducer {
         value: {
           type: 'purchase',
           userId,
-          productId: `prod_${Math.floor(Math.random() * 1000)}`,
-          amount: parseFloat((Math.random() * 200 + 5).toFixed(2)),
+          productId: `prod_${rand(1000)}`,
+          amount: parseFloat((rand(200) + 5 + rand(100) / 100).toFixed(2)),
           currency: 'USD',
         },
       },
@@ -103,7 +105,7 @@ class KafkaProducer {
         value: {
           type: 'logout',
           userId,
-          sessionDuration: Math.floor(Math.random() * 3600),
+          sessionDuration: rand(3600),
         },
       },
     ];
