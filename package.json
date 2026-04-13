@@ -1,0 +1,19 @@
+{
+  "name": "railway-kafka-template",
+  "version": "1.0.0",
+  "description": "Apache Kafka template for Railway",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "produce": "node -e \"import('./producer.js').then(m => m.produceExample())\""
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "kafkajs": "^2.2.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}
